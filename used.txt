@@ -1,0 +1,21 @@
+knowledgeBaseFiles = [{'name' : x.split('.')[0]} for x in os.listdir('C:\\D\\Github\\sayfer_dev-0.1\\Sayfer\\assets\\Knowledge Base') ]
+
+
+index = 0
+for i in range(len(knowledgeBaseFiles)):
+	index = i + 1
+	knowledgeBaseFiles[i]['id'] = index
+	knowledgeBaseFiles[i]['usability'] = 0
+	knowledgeBaseFiles[i]['technology'] = 'Default'
+	knowledgeBaseFiles[i]['word_count'] = 2500
+
+knowledge_conf = open('C:\\D\\Github\\sayfer_dev-0.1\\Sayfer\\assets\knowledge-configuration.json', 'w')
+knowledge_conf.write(json.dumps(knowledgeBaseFiles))
+knowledge_conf.close()
+
+
+for p in knowledgeBaseFiles:
+	myfile = open(f"C:\\D\\Github\\sayfer_dev-0.1\\Sayfer\\assets\\Knowledge Base\\{p['name']}.json", 'w')
+	exampleFile = open("C:\\D\\Github\\sayfer_dev-0.1\\Sayfer\\assets\\culture-knowledge.json", 'r')
+	exampleData = json.load(exampleFile)
+	json.dump(exampleData, myfile)
